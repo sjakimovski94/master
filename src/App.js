@@ -13,6 +13,12 @@ class App extends Component {
       inputValue: ''
     }
   }
+
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/todos')
+  .then(response => response.json())
+  .then(data => this.setState({list : data}))
+  }
   
 
   handleInputChange=(e)=>{
@@ -22,14 +28,19 @@ class App extends Component {
     e.preventDefault();
     const newList = this.state.list.slice();
     if(this.state.inputValue!==''){
-      newList.push(this.state.inputValue); 
-      this.setState({list : newList, inputValue: ''})
+      const newItemObj ={
+        "userId": 1,
+        "id": newList.length,
+        "title": this.state.inputValue,
+        "completed": false
+      }
+      newList.push(newItemObj);
     }
   };
   renderList=()=>{
       return this.state.list.map((item,index)=>{
       if(item !==''){
-        return <li><b>{item}<button className="DeleteButton" onClick={()=>this.deleteListItem(index)}>x</button></b></li>
+        return <li><b>{item.title}<button className="DeleteButton" onClick={()=>this.deleteListItem(index)}>x</button></b></li>
       }
       })
   };
