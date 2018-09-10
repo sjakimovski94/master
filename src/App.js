@@ -21,8 +21,10 @@ class App extends Component {
   handleSubmit=(e)=>{
     e.preventDefault();
     const newList = this.state.list.slice();
-    newList.push(this.state.inputValue);
-    this.setState({list : newList, inputValue: ''})
+    if(this.state.inputValue!==''){
+      newList.push(this.state.inputValue); 
+      this.setState({list : newList, inputValue: ''})
+    }
   };
   renderList=()=>{
       return this.state.list.map((item,index)=>{
