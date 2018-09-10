@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
 class App extends Component {
 
@@ -40,7 +41,7 @@ class App extends Component {
   renderList=()=>{
       return this.state.list.map((item,index)=>{
       if(item !==''){
-        return <li><b>{item.title}<button className="DeleteButton" onClick={()=>this.deleteListItem(index)}>x</button></b></li>
+        return <li><b>{item.title}<IconButton className="deleteButton" onClick={()=>this.deleteListItem(index)}><DeleteIcon/></IconButton></b></li>
       }
       })
   };
