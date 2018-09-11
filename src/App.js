@@ -36,6 +36,7 @@ class App extends Component {
         "completed": false
       }
       newList.push(newItemObj);
+      this.setState({list : newList, inputValue: ''})
     }
   };
   renderList=()=>{
@@ -53,10 +54,10 @@ class App extends Component {
   render() {
     return (
       <div style={{display: 'flex', justifyContent: 'center'}}>
-        <form onSubmit={(e)=> this.handleSubmit(e)}>
+        <form>
             <h2>To Do List</h2>
             <input style={{width: "200px", height: "28px"}} value={this.state.inputValue} type="text" onChange={(e)=> this.handleInputChange(e)}></input>
-            <Button className="SubmitButton" variant="contained" size="mini" color="primary" type="submit"onClick={this.handleAddToList}>Add to List</Button>
+            <Button className="SubmitButton" variant="contained" size="mini" color="primary" type="submit" onClick={(e)=> this.handleSubmit(e)}>Add to List</Button>
             {this.renderList()}
         </form>
       </div>
